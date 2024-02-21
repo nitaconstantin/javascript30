@@ -145,10 +145,32 @@
     </div>
 
     <script>
+      // const panels = document.querySelectorAll(".panel");
+
+      // function toggleOpen() {
+      //   this.classList.toggle("open");
+      //   // const setActive = (el) => [
+      //   //   ...el.parentElement.children.forEach((sib) =>
+      //   //     sib.classList.remove("open")
+      //   //   ),
+      //   // ];
+      //   // el.classList.add("open");
+      // }
+
       const panels = document.querySelectorAll(".panel");
 
       function toggleOpen() {
-        this.classList.toggle("open");
+        panels.forEach((panel) => {
+          panel.addEventListener("click", () => {
+            setActive(panel);
+          });
+        });
+        const setActive = (el) => {
+          [...el.parentElement.children].forEach((sib) =>
+            sib.classList.remove("open")
+          );
+          el.classList.add("open");
+        };
       }
 
       function toggleActive(e) {
