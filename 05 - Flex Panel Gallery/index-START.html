@@ -160,25 +160,23 @@
       const panels = document.querySelectorAll(".panel");
 
       function toggleOpen() {
-        panels.forEach((panel) => {
-          panel.addEventListener("click", () => {
-            setActive(panel);
-          });
+        const siblings = [...this.parentElement.children];
+        siblings.forEach((sibling) => {
+          if (sibling.classList.contains("open")) {
+            sibling.classList.remove("open");
+          }
         });
-        const setActive = (el) => {
-          [...el.parentElement.children].forEach((sib) =>
-            sib.classList.remove("open")
-          );
-          el.classList.add("open");
-        };
+        console.log("Hello");
+        this.classList.toggle("open");
       }
 
       function toggleActive(e) {
-        //this.classList.toggle("open-active");
+        console.log(e.propertyName);
         if (e.propertyName.includes("flex")) {
           this.classList.toggle("open-active");
         }
       }
+
       panels.forEach((panel) => panel.addEventListener("click", toggleOpen));
       panels.forEach((panel) =>
         panel.addEventListener("transitionend", toggleActive)
